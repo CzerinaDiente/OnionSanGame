@@ -67,9 +67,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -1404,9 +1401,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Wave Name
-
-'
+  m_text: 'Wave '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 60c75bd98a044644aaa2bc44715c608c, type: 2}
   m_sharedMaterial: {fileID: 3100376166665238952, guid: 60c75bd98a044644aaa2bc44715c608c, type: 2}
@@ -1904,6 +1899,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500686502}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1927,7 +1923,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -1938,7 +1935,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &555528495
@@ -2500,6 +2496,7 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601709736}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2523,13 +2520,13 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0.000000059604645, y: 0}
-  serializedVersion: 2
   m_Radius: 2.9999998
 --- !u!95 &601709744
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2543,6 +2540,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -5970,24 +5968,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6242029514b1442ad5d6452db46562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves:
-  - waveName: First Wave
-    noOfEnemies: 5
+  currentWave:
+    waveName: 
+    noOfEnemies: 0
     typeOfEnemies:
     - {fileID: 739019601569632329, guid: 7a52d326e94dfd64e9537948770865d9, type: 3}
-    spawnInterval: 1
-  - waveName: Second Wave
-    noOfEnemies: 20
-    typeOfEnemies:
     - {fileID: 7837835678495068931, guid: 4aa3997f89a5dff4cb6df31300b92bae, type: 3}
-    spawnInterval: 0.5
-  - waveName: Final Wave
-    noOfEnemies: 30
-    typeOfEnemies:
     - {fileID: 2509712760052637741, guid: 29006538792de7b4bbcff67e9ff075e3, type: 3}
-    - {fileID: 739019601569632329, guid: 7a52d326e94dfd64e9537948770865d9, type: 3}
-    - {fileID: 7837835678495068931, guid: 4aa3997f89a5dff4cb6df31300b92bae, type: 3}
-    spawnInterval: 1
+    spawnInterval: 0
+  Player: {fileID: 601709736}
   spawnPoints:
   - {fileID: 1268863516}
   - {fileID: 1117410141}
@@ -5998,7 +5987,7 @@ MonoBehaviour:
   playerMovement: {fileID: 601709740}
 --- !u!95 &1559974360
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6012,6 +6001,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -6310,6 +6300,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694878116}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -6333,7 +6324,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -6344,7 +6336,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &1694878118
@@ -6997,6 +6988,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988908176}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -7020,7 +7012,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -7031,7 +7024,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &2026512682
