@@ -4,29 +4,37 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    public float bulletSpeed = 20;
+    public float bulletSpeed = 15;
     public Rigidbody2D rb;
     public GameObject impactEffect;
 
     private bool hasHit = false;
 
-    void Start(){ rb.velocity = transform.up * bulletSpeed; Destroy(gameObject, 1f); }
+    void Start(){ Destroy(gameObject, 1f); }
+    
+    void FixedUpdate()
+    { 
+        rb.MovePosition(rb.position + (Vector2)transform.up * bulletSpeed * Time.fixedDeltaTime); // Keep velocity consistent with physics updates
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (hasHit || GameManager.Instance.isGameOver) return;
 
-        if (other.gameObject.tag == "Enemy")
+        IDamageable damageable = other.GetComponentInParent<IDamageable>();
+
+        if (damageable != null)
         {
             hasHit = true;
 
-            ScorePoints.scorePoints.AddPoint(); 
-            Destroy(other.gameObject);
+            damageable.TakeDamage(1);
 
-            GameObject effect = Instantiate(impactEffect, transform.position, transform.rotation); //Impact Effect 
-            
-            Destroy(this.gameObject);
-            Destroy(effect, 1f); 
+            ScorePoints.scorePoints.AddPoint();
+
+            GameObject effect = Instantiate(impactEffect, transform.position, transform.rotation);
+
+            Destroy(gameObject);
+            Destroy(effect, 1f);
         }
     }
 }

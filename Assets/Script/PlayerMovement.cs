@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(bulletPrefab, instanceTransform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab, instanceTransform.position, instanceTransform.rotation);
             animator.SetBool("isShooting", true);
         }
         else

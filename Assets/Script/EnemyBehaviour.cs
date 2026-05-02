@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour
+public interface IDamageable
+{
+    void TakeDamage(int damage);
+}
+
+public class EnemyBehaviour : MonoBehaviour, IDamageable
 {
     public float enemySpeed;
     private PlayerMovement playerMovement;
 
     public bool isDead = false;
+    private int health = 1;
 
     [Header("Score Penalty")]
     public int penalty = 100;
@@ -30,11 +36,22 @@ public class EnemyBehaviour : MonoBehaviour
         if (isDead || GameManager.Instance.isGameOver) return;
 
         isDead = true;
-
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void TakeDamage(int damage)
+    {
+        if (isDead || GameManager.Instance.isGameOver) return;
+
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) //for border damage
     {
         if (isDead || GameManager.Instance.isGameOver) return;
 
